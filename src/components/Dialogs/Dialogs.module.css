@@ -1,0 +1,13 @@
+.dialogsApp {
+  display: grid;
+
+  grid-template-columns: 2fr 10fr;
+}
+
+.dialogs li a{
+  color: white;
+}
+
+.message {
+  color: white;
+}

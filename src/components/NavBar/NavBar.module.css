@@ -1,0 +1,9 @@
+.nav {
+  background-color: yellow;
+
+  grid-area: nav;
+}
+
+.nav ul {
+  list-style: none;
+}
