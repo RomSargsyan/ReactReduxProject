@@ -6,7 +6,7 @@ const SET_USERS_PROFILE = "profile/SET-USERS-PROFILE";
 const SET_USERS_PROFILE_STATUS = "profile/SET-USERS-PROFILE-STATUS";
 const SAVE_PROFILE_PHOTO_SUCCESSS = "profile/SAVE-PROFILE-PHOTO-SUCCESSS";
 
-let initialState = {
+const initialState = {
   posts: [
     {id: 1, message: "post1" },
     {id: 2, message: "post2" },
@@ -17,11 +17,11 @@ let initialState = {
 }
 
 
-let profileReducer = (state = initialState, action) => {
-  let stateCopy = JSON.parse(JSON.stringify(state));
+const profileReducer = (state = initialState, action) => {
+  const stateCopy = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case ADD_POST: {
-      let newPost = {
+      const newPost = {
         id: 4,
         message: action.newTextPost,
       };
@@ -63,21 +63,21 @@ export const getUsersProfileStatus = (userId) => async (dispatch) => {
    dispatch(setUsersProfileStatus(res.data))
 }
 
-export let updateUsersProfileStatus = (status) => async (dispatch) => {
+export const updateUsersProfileStatus = (status) => async (dispatch) => {
   const res = await profileAPI.updateUsersProfileStatus(status)
   if (res.data.resultCode === 0) {
     dispatch(setUsersProfileStatus(res.data));
   }
 }
 
-export let saveProfilePhoto = (photo) => async (dispatch) => {
-  let res = await profileAPI.saveProfilePhoto(photo)
+export const saveProfilePhoto = (photo) => async (dispatch) => {
+  const res = await profileAPI.saveProfilePhoto(photo)
   if (res.data.resultCode === 0) {
     dispatch(saveProfilePhotoSuccess(res.data.data.photos));
   }
 }
 
-export let saveProfileData = (data) => async (dispatch, getState) => {
+export const saveProfileData = (data) => async (dispatch, getState) => {
   const userId = getState().auth.userId;
   const res = await profileAPI.saveProfileData(data);
 

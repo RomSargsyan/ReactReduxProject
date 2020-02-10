@@ -43,7 +43,7 @@ export const profileAPI = {
     return inctance.put('/profile/status', { status })
   },
   saveProfilePhoto: (photo) => {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("image", photo);
     return inctance.put('/profile/photo', formData,
       { headers: {'Content-Type': 'multipart/form-data'}})

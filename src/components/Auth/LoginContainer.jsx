@@ -1,20 +1,10 @@
-import React from 'react';
-import Login from './Login';
-import { connect } from 'react-redux';
-import { login, logout } from './../../redux/auth-reducer';
+import { connect } from "react-redux";
 
-class LoginContainer extends React.Component {
-  render() {
-    return <Login {...this.props} />
-  }
-}
+import Login from "./Login";
+import { login, logout } from "./../../redux/auth-reducer";
 
-let mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth,
-    userId: state.auth.userId,
-    captchaUrl: state.auth.captchaUrl,
-  }
-}
+const mapStateToProps = ({auth: {isAuth, userId, captchaUrl}}) => {
+  return { isAuth, userId, captchaUrl };
+};
 
-export default connect(mapStateToProps, { login, logout })(LoginContainer);
+export default connect(mapStateToProps, { login, logout })(Login);

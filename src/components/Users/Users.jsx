@@ -1,22 +1,26 @@
-import React from 'react';
-import Pegination from './../Common/Pegination/Pegination';
-import User from './User';
+import React from "react";
+import Pegination from "./../Common/Pegination/Pegination";
+import User from "./User";
 
-const Users = (props) => {
-  if (!props.totalUsersCount) {
-    return <h1>yo yo</h1>
+const Users = ({totalUsersCount, users, onFollow, onUnfollow, isFollowing, ...props}) => {
+  if (!totalUsersCount) {
+    return <h1>yo yo</h1>;
   }
 
   return (
     <div>
-      <Pegination {...props} />
-      {
-        props.users.map(user => {
-          return <User key={user.id} user={user} {...props} />
-        })
-      }
+      <Pegination totalUsersCount={totalUsersCount} {...props} />
+      {users.map(user => {
+        return <User
+          user={user}
+          key={user.id}
+          onFollow={onFollow}
+          onUnfollow={onUnfollow}
+          isFollowing={isFollowing}
+        />;
+      })}
     </div>
-  )
-}
+  );
+};
 
 export default Users;

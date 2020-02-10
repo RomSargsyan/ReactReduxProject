@@ -1,55 +1,48 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose }  from 'redux';
-import Users from './Users';
-import { follow, unfollow, getUsers, setCurrentPage } from './../../redux/users-reducer';
-import WithAuthRedirect from './../Hoc/withRedirect';
-import {
-  getUsersSelector,
-  getTotalUsersCountSelector,
-  getCurrentPageSelector,
-  getPageSizeSelector,
-  getFollowingSelector,
-} from './../../redux/users-reselect';
+import { connect } from "react-redux";
+import React, { useEffect } from "react";
 
-class UsersContainer extends React.Component {
-  componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
-  }
-  onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.getUsers(pageNumber, this.props.pageSize);
-  }
+import Users from "./Users";
+import { follow, unfollow, getUsers, setCurrentPage } from "./../../redux/users-reducer";
 
-  onFollow = (userId) => {
-    this.props.follow(userId);
-  }
+const UsersContainer = props => {
+  const { getUsers, currentPage, pageSize,
+          setCurrentPage, follow, unfollow
+        } = props;
 
-  onUnfollow = (userId) => {
-    this.props.unfollow(userId);
-  }
+  useEffect(() => {
+    getUsers(currentPage, pageSize);
+  }, [getUsers]);
 
-  render() {
-    return <Users
-              {...this.props}
-              onPageChanged={this.onPageChanged}
-              onFollow={this.onFollow}
-              onUnfollow={this.onUnfollow}
-            />
-  }
-}
+  const onPageChanged = pageNumber => {
+    setCurrentPage(pageNumber);
+    getUsers(pageNumber, pageSize);
+  };
 
-const mapStateToProps = (state) => {
-  return {
-    users: getUsersSelector(state),
-    totalUsersCount: getTotalUsersCountSelector(state),
-    currentPage: getCurrentPageSelector(state),
-    pageSize: getPageSizeSelector(state),
-    isFollowing: getFollowingSelector(state),
-  }
-}
+  const onFollow = userId => {
+    follow(userId);
+  };
 
-export default compose(
-  connect(mapStateToProps, { follow, unfollow, getUsers, setCurrentPage }),
-  WithAuthRedirect
-)(UsersContainer)
+  const onUnfollow = userId => {
+    unfollow(userId);
+  };
+
+  return (
+    <Users
+      {...props}
+      onFollow={onFollow}
+      onUnfollow={onUnfollow}
+      onPageChanged={onPageChanged}
+    />
+  );
+};
+
+const mapStateToProps = ({ usersPage: {users, totalUsersCount, currentPage, pageSize, isFollowing}}) => {
+  return { users, totalUsersCount, currentPage, pageSize, isFollowing };
+};
+
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  getUsers,
+  setCurrentPage
+})(UsersContainer);

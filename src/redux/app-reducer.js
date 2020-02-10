@@ -1,29 +1,28 @@
-import { getAuth } from './auth-reducer';
+import { getAuth } from "./auth-reducer";
 
 const INITIATION_SUCCESS = "app/INITIATION-SUCCESS";
 
-let initialState = {
+const initialState = {
   isInitiation: false
-}
+};
 
-let appReducer = (state = initialState, action) => {
-  let stateCopy = JSON.parse(JSON.stringify(state));
+const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case INITIATION_SUCCESS: {
-      stateCopy.isInitiation = true
-      return stateCopy;
+      return {...state, isInitiation: true };
     }
-    default: return stateCopy
+    default:
+      return state;
   }
-}
+};
 
-const initiatonSuccess = () => ({type: INITIATION_SUCCESS});
+const initiatonSuccess = () => ({ type: INITIATION_SUCCESS });
 
-export const appInitiaton = () => (dispatch) => {
-  let promise = dispatch(getAuth());
+export const appInitiaton = () => dispatch => {
+  const promise = dispatch(getAuth());
   promise.then(() => {
     dispatch(initiatonSuccess());
-  })
-}
+  });
+};
 
 export default appReducer;

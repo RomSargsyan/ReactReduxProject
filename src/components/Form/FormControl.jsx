@@ -1,10 +1,10 @@
 import React from 'react';
-import s from './FormControl.module.css';
+import style from './FormControl.module.css';
 
-export const Textarea = ({input, meta, ...props}) => {
-  let hasBeenError = meta.touched && meta.error;
+export const Textarea = ({input, meta}) => {
+  const hasBeenError = meta.touched && meta.error;
   return (
-    <div className={`${hasBeenError ? s.error : ''}`}>
+    <div className={`${hasBeenError ? style.error : ''}`}>
       <div>
         <textarea {...input} />
       </div>
@@ -14,9 +14,9 @@ export const Textarea = ({input, meta, ...props}) => {
 }
 
 export const Input = ({input, meta, ...props}) => {
-  let hasBeenError = meta.touched && meta.error;
+  const hasBeenError = meta.touched && meta.error;
   return (
-    <div className={`${hasBeenError ? s.error : ''}`}>
+    <div className={`${hasBeenError ? style.error : ''}`}>
       <div>
         <input {...input} {...props} />
       </div>

@@ -1,35 +1,32 @@
-import React from 'react';
-import style from './Dialogs.module.css';
-import Item from './Item/Item';
-import Message from './Message/Message';
-import DialogsForm from './../Form/DialogsForm';
+import React from "react";
 
-const Dialogs = (props) => {
-  let dialogsItemElements = props.dialogs.map((dialog) => {
-      return <Item key={dialog.id} name={dialog.name} id={dialog.id} />
-    });
+import Item from "./Item/Item";
+import Message from "./Message/Message";
+import style from "./Dialogs.module.css";
+import DialogsForm from "./../Form/DialogsForm";
 
-  let dialogsMessageElements = props.message.map((msg, index) => {
-      return <Message key={index} message={msg.message} />
-    });
+const Dialogs = props => {
+  const { dialogs, message, sendMessage } = props;
 
-  let sendMessage = (value) => {
-    props.sendMessage(value.message);
-  };
+  const dialogsItemElements = dialogs.map(dialog => (
+    <Item key={dialog.id} name={dialog.name} id={dialog.id} />
+  ));
+
+  const dialogsMessageElements = message.map((msg, index) => (
+    <Message key={index} message={msg.message} />
+  ));
+
+  const onSendMessage = value => sendMessage(value.message);
 
   return (
     <div className={style.dialogsApp}>
-      <div>
-        { dialogsItemElements }
-      </div>
+      <div>{dialogsItemElements}</div>
       <div className={style.message}>
-        <div>
-          { dialogsMessageElements }
-        </div>
-        <DialogsForm onSubmit={sendMessage} {...props} />
+        <div>{dialogsMessageElements}</div>
+        <DialogsForm onSubmit={onSendMessage} {...props} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Dialogs;

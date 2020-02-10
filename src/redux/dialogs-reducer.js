@@ -1,6 +1,6 @@
 const SEND_MESSAGE = "dialogs/SEND-MESSAGE";
 
-let initialState = {
+const initialState = {
   dialogs: [
     { id: 1, name: 'Anna' },
     { id: 2, name: 'Maria' },
@@ -16,10 +16,10 @@ let initialState = {
 }
 
 
-let dialogsReducer = (state = initialState, action) => {
-  let stateCopy = JSON.parse(JSON.stringify(state));
+const dialogsReducer = (state = initialState, action) => {
+  const stateCopy = JSON.parse(JSON.stringify(state));
   if (action.type === SEND_MESSAGE) {
-    let newMessage = {
+    const newMessage = {
       id: 4,
       message: action.message
     };

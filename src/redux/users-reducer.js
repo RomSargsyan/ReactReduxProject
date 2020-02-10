@@ -7,7 +7,7 @@ const SET_TOTAL_USERS_COUNT = 'users/SET-TOTAL-USERS-COUNT';
 const SET_CURRENT_PAGE = 'users/SET-CURRENT-PAGE';
 const FOLLOWING_PROGRESS = 'users/FOLLOWING-PROGRESS';
 
-let initialState = {
+const initialState = {
   users: [],
   totalUsersCount: 0,
   currentPage: 1,
@@ -16,8 +16,8 @@ let initialState = {
 }
 
 
-let usersReducer = (state = initialState, action) => {
-  let stateCopy = JSON.parse(JSON.stringify(state));
+const usersReducer = (state = initialState, action) => {
+  const stateCopy = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case FOLLOW: {
       stateCopy.users.map(user => {

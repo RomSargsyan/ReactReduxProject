@@ -1,7 +1,7 @@
 // import profileReducer from './profile-reducer';
 // import dialogsReducer from './dialogs-reducer';
 //
-// let store = {
+// const store = {
 //   _state: {
 //     dialogsPage: {
 //       dialogs: [
