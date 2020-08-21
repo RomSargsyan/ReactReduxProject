@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { withRouter } from "react-router";
 
 import Profile from "./Profile";
@@ -21,7 +21,7 @@ const ProfileContainer = props => {
     getUsersProfileStatus
   } = props;
 
-  const updateProfileInfo = () => {
+  const updateProfileInfo = useCallback(() => {
     let userId = match.params.userId;
     if (!userId) {
       userId = authorizedUserId;
@@ -31,11 +31,17 @@ const ProfileContainer = props => {
     }
     getUsersProfile(userId);
     getUsersProfileStatus(userId);
-  };
+  }, [
+    authorizedUserId, 
+    getUsersProfile,
+    getUsersProfileStatus,
+    history,
+    match.params.userId
+  ]);
 
   useEffect(() => {
     updateProfileInfo();
-  }, [match.params.userId]);
+  }, [match.params.userId, updateProfileInfo]);
 
   return <Profile {...props} isOwner={!!match.params.userId} />;
 };

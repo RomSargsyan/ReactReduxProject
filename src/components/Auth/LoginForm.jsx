@@ -19,7 +19,7 @@ const LoginForm = ({handleSubmit, captchaUrl, error}) => (
     <div>
       {!!captchaUrl && (
         <div>
-          <img src={captchaUrl} />
+          <img src={captchaUrl} alt="captcha" />
           <Field type="text" name="captcha" component={Input} placeholder="Please type image string" />
         </div>
       )}

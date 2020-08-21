@@ -20,10 +20,11 @@ const usersReducer = (state = initialState, action) => {
   const stateCopy = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case FOLLOW: {
-      stateCopy.users.map(user => {
+      stateCopy.users.map((user) => {
         if(action.userId === user.id) {
           user.followed = false;
         }
+        return user
       })
       return stateCopy
     }
@@ -32,6 +33,7 @@ const usersReducer = (state = initialState, action) => {
         if(action.userId === user.id) {
           user.followed = true;
         }
+        return user
       })
       return stateCopy
     }

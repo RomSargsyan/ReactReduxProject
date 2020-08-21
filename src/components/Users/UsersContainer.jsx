@@ -11,7 +11,7 @@ const UsersContainer = props => {
 
   useEffect(() => {
     getUsers(currentPage, pageSize);
-  }, [getUsers]);
+  }, [getUsers, currentPage, pageSize]);
 
   const onPageChanged = pageNumber => {
     setCurrentPage(pageNumber);
