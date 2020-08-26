@@ -8,12 +8,12 @@ import profileReducer from "./profile-reducer";
 import usersReducer from "./users-reducer";
 
 const reducers = combineReducers({
-  profilePage: profileReducer,
-  dialogsPage: dialogsReducer,
-  usersPage: usersReducer,
-  auth: authReducer,
-  form: formReducer,
-  app: appReducer
+	profilePage: profileReducer,
+	dialogsPage: dialogsReducer,
+	usersPage: usersReducer,
+	auth: authReducer,
+	form: formReducer,
+	app: appReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
