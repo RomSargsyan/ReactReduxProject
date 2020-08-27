@@ -23,14 +23,13 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-
-### `server serve`
-    https://social-network.samuraijs.com/api/1.0
+# Server serve
+[https://social-network.samuraijs.com/api/1.0](https://social-network.samuraijs.com/api/1.0)
 
 
 # Screenshots
   Check out some themed installs in these screenshots below:
 
-<img src="assets/screenshots/Login.png" width=300>   <img src="assets/screenshots/Message.png" width=300>
-<img src="assets/screenshots/Profile.png" width=300>   <img src="assets/screenshots/Users.png" width=300>
-<img src="assets/screenshots/Edit.png" width=300>   <img src="assets/screenshots/Pegination.png" width=300>
+<img src="src/assets/screenshots/Login.png" width=300 />   <img src="src/assets/screenshots/Message.png" width=300>
+<img src="src/assets/screenshots/Profile.png" width=300>   <img src="src/assets/screenshots/Users.png" width=300>
+<img src="src/assets/screenshots/Edit.png" width=300>   <img src="src/assets/screenshots/Pegination.png" width=300>
